@@ -1,5 +1,9 @@
 # Calculadora de sub-redes
 
+## Descrição
+
+Projeto consiste em uma calculadora e para calcular endereços de subredes ips.
+
 ## Comandos
 
 Os comandos funcionam baseados nos comandos definidos no arquivo `Makefile`.

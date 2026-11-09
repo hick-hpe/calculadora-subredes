@@ -12,3 +12,7 @@ ps:
 
 logs:
 	docker compose logs -f
+
+t1:
+	export VALUE=1
+	python client/requisicao.py
