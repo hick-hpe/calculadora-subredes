@@ -1,6 +1,6 @@
 import pytest
 import requests
-from src.data import testes
+from tests.data import testes
 
 
 @pytest.mark.parametrize("caso", testes)

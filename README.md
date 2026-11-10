@@ -14,6 +14,30 @@ O usuário informa um endereço IP e uma máscara de sub-rede, e a aplicação r
 - **CSS / Bootstrap**: estilização e responsividade.
 - **JavaScript**: comunicação com a API e atualização dinâmica da interface.
 
+## Estrutura do projeto
+
+```text
+calculadora-subredes/
+├── assets/                 # Imagens da documentação
+├── src/
+│   ├── static/
+│   │   └── js/             # Arquivos JavaScript
+│   ├── templates/          # Páginas HTML
+│   │   └── index.html
+│   ├── main.py             # Inicialização e rotas da API
+│   ├── services.py         # Lógica de negócio e cálculos
+│   └── utils.py            # Funções auxiliares
+├── tests/
+│   ├── data.py             # Dados utilizados nos testes
+│   └── test_calcular_subredes.py
+├── .gitignore
+├── docker-compose.yml
+├── Dockerfile
+├── Makefile
+├── README.md
+└── requirements.txt
+```
+
 ## Comandos
 
 Os comandos abaixo são executados por meio das instruções definidas no arquivo `Makefile`.
