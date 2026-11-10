@@ -1,10 +1,15 @@
 from utils import converter_ip_binario_para_decimal, converter_ip_decimal_para_binario
+import re
 
 
 def validar_endereco_ip(endereco_ip: str) -> bool:
     octetos = endereco_ip.split('.')
     if len(octetos) != 4:
         return False
+
+    if not re.match(r"^\d{1,3}(\.\d{1,3}){3}$", endereco_ip):
+        return False
+    
     return all(0 <= int(octeto) <= 255 for octeto in endereco_ip.split('.'))
 
 
@@ -15,14 +20,14 @@ def validar_mascara(mascara: str) -> bool:
 
     if mascara_com_prefixo:
         if not mascara[1:].isdigit():
-            print("[ERROR-VALIDATE-MASK] A máscara de rede deve ser um número entre 0 e 32, ou uma máscara decimal válida.")
             return False
         if not (0 <= int(mascara[1:]) <= 32):
-            print("[ERROR-VALIDATE-MASK] A máscara de rede deve ser um número entre 0 e 32.")
             return False
     else:
+        if not re.match(r"^\d{1,3}(\.\d{1,3}){3}$", mascara):
+            return False
+
         if not all(0 <= int(octeto) <= 255 for octeto in mascara.split('.')):
-            print("[ERROR-VALIDATE-MASK] A máscara de rede deve ser um número entre 0 e 32, ou uma máscara decimal válida.")
             return False
 
     # validar se existe "1"s consecultivos

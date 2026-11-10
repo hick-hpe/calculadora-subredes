@@ -28,6 +28,8 @@ def calcular_subredes():
     endereco_ip = data.get('endereco_ip')
     mascara = data.get('mascara')
 
+    print(f"Recebido: endereco_ip={endereco_ip}, mascara={mascara}")
+
     # validar dados
     if not endereco_ip or not mascara:
         return jsonify({"error": "Endereço IP e máscara são obrigatórios."}), 400
