@@ -1,8 +1,10 @@
+.PHONY: tests
+
 build:
-	docker compose up -d --build
+	docker compose up --build
 
 up:
-	docker compose up -d
+	docker compose up
 
 down:
 	docker compose down
@@ -13,6 +15,5 @@ ps:
 logs:
 	docker compose logs -f
 
-t1:
-	export VALUE=1
-	python client/requisicao.py
+tests:
+	docker exec -it app_rede python -m pytest -v --disable-warnings --maxfail=1

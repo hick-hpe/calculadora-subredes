@@ -7,14 +7,20 @@ versão 4 (IPv4) e a respectiva máscara de rede e apresente as informações da
 
 """
 
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from services import calcular_mascara, calcular_subrede, validar_endereco_ip, validar_mascara
 
 app = Flask(__name__)
 
-@app.route('/')
-def index():
+@app.route('/health', methods=['GET'])
+def health_check():
     return jsonify({"message": "Bem-vindo à Calculadora de Sub-redes IPv4!"})
+
+
+@app.route('/', methods=['GET'])
+def index():
+    return render_template('index.html')
+
 
 @app.route('/subredes', methods=['POST'])
 def calcular_subredes():
@@ -44,7 +50,7 @@ def calcular_subredes():
     mascara_prefixo, mascara_decimal, mascara_binario = calcular_mascara(mascara)
 
     # calcular endereco de rede, broadcast, quantidade de hosts e faixa de hosts
-    endereco_rede, endereco_broadcast, qtd_hosts, faixa_hosts = calcular_subrede(endereco_ip_binario, mascara_binario)
+    endereco_rede, endereco_broadcast, quantidade_hosts, faixa_hosts = calcular_subrede(endereco_ip_binario, mascara_binario)
 
     return jsonify({
         "endereco_ip_binario": endereco_ip_binario,
@@ -53,7 +59,7 @@ def calcular_subredes():
         "mascara_binario": mascara_binario,
         "endereco_rede": endereco_rede,
         "endereco_broadcast": endereco_broadcast,
-        "qtd_hosts": qtd_hosts,
+        "quantidade_hosts": quantidade_hosts,
         "faixa_hosts": faixa_hosts,
     })
 
